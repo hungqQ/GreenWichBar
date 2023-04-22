@@ -11,5 +11,8 @@ class Customer extends Model
     protected $table = 'customers';
     protected $primaryKey = 'id';
     protected $fillable = ['name', 'age', 'phone'];
-    
+    public function order()
+    {
+        return $this->hasMany(Order::class);
+    }
 }

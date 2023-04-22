@@ -11,4 +11,8 @@ class Drink extends Model
     protected $table = 'drinks';
     protected $primaryKey = 'id';
     protected $fillable = ['category','name', 'price', 'description'];
+    public function bartender()
+    {
+        return $this->hasMany(Bartender::class);
+    }
 }
