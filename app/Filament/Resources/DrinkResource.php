@@ -23,6 +23,9 @@ class DrinkResource extends Resource
     {
         return $form
             ->schema([
+                Forms\Components\TextInput::make('category')
+                ->required()
+                ->maxLength(255),
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
@@ -38,6 +41,7 @@ class DrinkResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('category'),
                 Tables\Columns\TextColumn::make('name'),
                 Tables\Columns\TextColumn::make('price'),
                 Tables\Columns\TextColumn::make('description'),
