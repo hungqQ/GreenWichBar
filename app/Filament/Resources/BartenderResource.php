@@ -31,6 +31,8 @@ class BartenderResource extends Resource
             Forms\Components\TextInput::make('phone')
                 ->required()
                 ->maxLength(255),
+             Forms\Components\FileUpload::make('image')
+                ->required()
         ]);
     }
 
@@ -42,6 +44,7 @@ class BartenderResource extends Resource
             Tables\Columns\TextColumn::make('name'),
             Tables\Columns\TextColumn::make('age'),
             Tables\Columns\TextColumn::make('phone'),
+            Tables\Columns\ImageColumn::make('image'),
             Tables\Columns\TextColumn::make('created_at')
                 ->dateTime(),
             Tables\Columns\TextColumn::make('updated_at')
