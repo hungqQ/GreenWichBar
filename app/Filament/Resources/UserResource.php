@@ -6,7 +6,11 @@ use App\Filament\Resources\UserResource\Pages;
 use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\User;
 use Filament\Forms;
+use Filament\Forms\Components\Card;
+use Filament\Forms\Components\TextInput;
 use Filament\Resources\Form;
+use Filament\Resources\Pages\CreateRecord;
+use Filament\Resources\Pages\Page;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
@@ -22,8 +26,28 @@ class UserResource extends Resource
     public static function form(Form $form): Form
     {
         return $form
+        ->schema([
+            Card::make()
             ->schema([
-                //
+                TextInput::make('name')
+                ->required()
+                ->maxLength(255),
+                TextInput::make('email')
+                ->label('email address')
+                ->required()
+                ->maxLength(255),
+                TextInput::make('password')
+                ->password()
+                ->required(fn(Page $livewire):bool =>$livewire instanceof CreateRecord)
+                ->minLength(8)
+                ->same('passwordConfirmation')
+                ->required(fn(Page $livewire):bool =>$livewire instanceof CreateRecord),
+                TextInput::make('passwordConfirmation')
+                  ->password()
+                ->required(fn(Page $livewire):bool =>$livewire instanceof CreateRecord)
+                ->maxLength(8)
+                ->dehydrated(false)
+                 ])
             ]);
     }
 
