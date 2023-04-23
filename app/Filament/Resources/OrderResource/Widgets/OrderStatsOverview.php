@@ -14,10 +14,18 @@ class OrderStatsOverview extends BaseWidget
     protected function getCards(): array
     {
         return [
-            Card::make('All Order', Order::all()->count()),
-            Card::make('All Customer', Customer::all()->count()),
-            Card::make('All Bartender', Bartender::all()->count()),
-            Card::make('All Drink', Drink::all()->count()),
+            Card::make('All Order', Order::all()->count())
+            ->description('amount of order')
+            ->descriptionIcon('heroicon-s-shopping-cart'),
+            Card::make('All Customer', Customer::all()->count())
+            ->description('amount of customer')
+            ->descriptionIcon('heroicon-s-user'),
+            Card::make('All Bartender', Bartender::all()->count())
+            ->description('amount of bartender')
+            ->descriptionIcon('heroicon-s-user-group'),
+            Card::make('All Drink', Drink::all()->count())
+            ->description('amount of drink')
+            ->descriptionIcon('heroicon-s-beaker'),
         ];
     }
 }
