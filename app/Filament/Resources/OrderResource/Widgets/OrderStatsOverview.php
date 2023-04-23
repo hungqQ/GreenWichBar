@@ -16,16 +16,20 @@ class OrderStatsOverview extends BaseWidget
         return [
             Card::make('All Order', Order::all()->count())
             ->description('amount of order')
-            ->descriptionIcon('heroicon-s-shopping-cart'),
+            ->descriptionIcon('heroicon-s-shopping-cart')
+            ->color('danger'),
             Card::make('All Customer', Customer::all()->count())
             ->description('amount of customer')
-            ->descriptionIcon('heroicon-s-user'),
+            ->descriptionIcon('heroicon-s-user')
+            ->color('danger'),
             Card::make('All Bartender', Bartender::all()->count())
             ->description('amount of bartender')
-            ->descriptionIcon('heroicon-s-user-group'),
+            ->descriptionIcon('heroicon-s-user-group')
+            ->color('danger'),
             Card::make('All Drink', Drink::all()->count())
             ->description('amount of drink')
-            ->descriptionIcon('heroicon-s-beaker'),
+            ->descriptionIcon('heroicon-s-beaker')
+            ->color('danger'),
         ];
     }
 }
