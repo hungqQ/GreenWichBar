@@ -22,7 +22,7 @@ class BartenderResource extends Resource
 {
     protected static ?string $model = Bartender::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-star';
     protected static ?string $navigationGroup = 'Role Management';
 
     public static function form(Form $form): Form
