@@ -13,6 +13,10 @@ class Drink extends Model
     protected $fillable = ['category','name', 'price', 'description','image'];
     public function bartender()
     {
-        return $this->hasMany(Bartender::class);
+        return $this->belongsToMany(Bartender::class);
+    }
+    public function order()
+    {
+        return $this->belongsToMany(Bartender::class);
     }
 }

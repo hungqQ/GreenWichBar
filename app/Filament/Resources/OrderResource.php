@@ -2,12 +2,12 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\CustomerResource\Pages;
-use App\Filament\Resources\CustomerResource\RelationManagers;
-use App\Models\Customer;
+use App\Filament\Resources\OrderResource\Pages;
+use App\Filament\Resources\OrderResource\RelationManagers;
+use App\Models\Order;
 use Filament\Forms;
 use Filament\Forms\Components\Card;
-use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
@@ -17,22 +17,23 @@ use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class CustomerResource extends Resource
+class OrderResource extends Resource
 {
-    protected static ?string $model = Customer::class;
+    protected static ?string $model = Order::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
 
     public static function form(Form $form): Form
     {
         return $form
-        ->schema([
-            Card::make()
-            ->schema([
-                TextInput::make('name'),
-                TextInput::make('age'),
-                TextInput::make('phone'),
-        ])
+            ->schema([Card::make()
+                ->schema([
+                Select::make('drink_id')
+                ->relationship('drink', 'name')->required(),
+                Select::make('customer_id')
+                ->relationship('customer', 'name')->required(),
+                ])
+                //
             ]);
     }
 
@@ -41,12 +42,11 @@ class CustomerResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('id')->sortable(),
-                TextColumn::make('name')->sortable()->searchable(),
-                TextColumn::make('age')->sortable()->searchable(),
-                TextColumn::make('phone')->sortable()->searchable(),
-                Tables\Columns\TextColumn::make('created_at')
+                TextColumn::make('drink.name')->sortable()->searchable(),
+                TextColumn::make('customer.name')->sortable()->searchable(),
+                TextColumn::make('created_at')
                     ->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')
+                TextColumn::make('updated_at')
                     ->dateTime(),
             ])
             ->filters([
@@ -70,9 +70,9 @@ class CustomerResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListCustomers::route('/'),
-            'create' => Pages\CreateCustomer::route('/create'),
-            'edit' => Pages\EditCustomer::route('/{record}/edit'),
+            'index' => Pages\ListOrders::route('/'),
+            'create' => Pages\CreateOrder::route('/create'),
+            'edit' => Pages\EditOrder::route('/{record}/edit'),
         ];
     }    
 }

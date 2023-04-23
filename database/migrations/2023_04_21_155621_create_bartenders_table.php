@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('bartenders', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('age');
-            $table->integer('phone');
+            $table->string('age');
+            $table->string('phone');
             $table->text('image')->nullable();
             $table->timestamps();
         });

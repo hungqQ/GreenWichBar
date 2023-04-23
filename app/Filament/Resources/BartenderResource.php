@@ -6,10 +6,15 @@ use App\Filament\Resources\BartenderResource\Pages;
 use App\Filament\Resources\BartenderResource\RelationManagers;
 use App\Models\Bartender;
 use Filament\Forms;
+use Filament\Forms\Components\Card;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\TextInput;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -22,18 +27,16 @@ class BartenderResource extends Resource
     public static function form(Form $form): Form
     {
         return $form
-          ->schema([
-                Forms\Components\TextInput::make('name')
-                ->required()
-                ->maxLength(255),
-            Forms\Components\TextInput::make('age')
-                ->required(),
-            Forms\Components\TextInput::make('phone')
-                ->required()
-                ->maxLength(255),
-             Forms\Components\FileUpload::make('image')
-                ->required()
-        ]);
+        ->schema([
+            Card::make()
+            ->schema([
+                TextInput::make('name'),
+                TextInput::make('age'),
+                TextInput::make('phone'),
+                FileUpload::make('image'),
+
+        ])
+            ]);
     }
 
 
@@ -41,10 +44,11 @@ class BartenderResource extends Resource
     {
         return $table
         ->columns([
-            Tables\Columns\TextColumn::make('name'),
-            Tables\Columns\TextColumn::make('age'),
-            Tables\Columns\TextColumn::make('phone'),
-            Tables\Columns\ImageColumn::make('image'),
+            TextColumn::make('id')->sortable(),
+            TextColumn::make('name')->sortable()->searchable(),
+            TextColumn::make('age')->sortable()->searchable(),
+            TextColumn::make('phone')->sortable()->searchable(),
+            ImageColumn::make('image'),
             Tables\Columns\TextColumn::make('created_at')
                 ->dateTime(),
             Tables\Columns\TextColumn::make('updated_at')

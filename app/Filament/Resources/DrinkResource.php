@@ -6,12 +6,18 @@ use App\Filament\Resources\DrinkResource\Pages;
 use App\Filament\Resources\DrinkResource\RelationManagers;
 use App\Models\Drink;
 use Filament\Forms;
+use Filament\Forms\Components\TextInput;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+
+use Filament\Forms\Components\Card;
+use Filament\Forms\Components\FileUpload;
 
 class DrinkResource extends Resource
 {
@@ -23,19 +29,15 @@ class DrinkResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('category')
-                ->required()
-                ->maxLength(255),
-                Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('price')
-                    ->required(),
-                Forms\Components\TextInput::make('description')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\FileUpload::make('image')
-                    ->required()
+            Card::make()
+            ->schema([
+                TextInput::make('category'),
+                TextInput::make('name'),
+                TextInput::make('price'),
+                TextInput::make('description'),
+                FileUpload::make('image'),
+
+        ])
             ]);
     }
 
@@ -43,14 +45,14 @@ class DrinkResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('category'),
-                Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\TextColumn::make('price'),
-                Tables\Columns\TextColumn::make('description'),
-                Tables\Columns\ImageColumn::make('image'),
-                Tables\Columns\TextColumn::make('created_at')
+                TextColumn::make('id')->sortable(),
+                TextColumn::make('category')->sortable()->searchable(),
+                TextColumn::make('name')->sortable()->searchable(),
+                TextColumn::make('description')->sortable()->searchable(),
+                ImageColumn::make('image'),
+                TextColumn::make('created_at')
                     ->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')
+                TextColumn::make('updated_at')
                     ->dateTime(),
             ])
             ->filters([
