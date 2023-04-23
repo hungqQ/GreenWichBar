@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\OrderResource\Pages;
 use App\Filament\Resources\OrderResource\RelationManagers;
+use App\Filament\Resources\OrderResource\Widgets\OrderStatsOverview;
 use App\Models\Order;
 use Filament\Forms;
 use Filament\Forms\Components\Card;
@@ -66,6 +67,13 @@ class OrderResource extends Resource
     {
         return [
             //
+        ];
+    }
+    
+    public static function getWidgets(): array
+    {
+        return[
+            OrderStatsOverview::class,
         ];
     }
     
