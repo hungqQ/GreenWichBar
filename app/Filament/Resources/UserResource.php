@@ -14,6 +14,7 @@ use Filament\Resources\Pages\Page;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -43,7 +44,7 @@ class UserResource extends Resource
                 ->same('passwordConfirmation')
                 ->required(fn(Page $livewire):bool =>$livewire instanceof CreateRecord),
                 TextInput::make('passwordConfirmation')
-                  ->password()
+                ->password()
                 ->required(fn(Page $livewire):bool =>$livewire instanceof CreateRecord)
                 ->maxLength(8)
                 ->dehydrated(false)
@@ -55,7 +56,10 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('name')->sortable()->searchable(),
+                TextColumn::make('email')->sortable()->searchable(),
+                TextColumn::make('created_at')
+                    ->dateTime(),
             ])
             ->filters([
                 //
