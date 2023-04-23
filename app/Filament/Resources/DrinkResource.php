@@ -24,6 +24,7 @@ class DrinkResource extends Resource
     protected static ?string $model = Drink::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationGroup = 'Drink Management';
 
     public static function form(Form $form): Form
     {
