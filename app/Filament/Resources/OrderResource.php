@@ -43,6 +43,7 @@ class OrderResource extends Resource
             ->columns([
                 TextColumn::make('id')->sortable(),
                 TextColumn::make('drink.name')->sortable()->searchable(),
+                TextColumn::make('drink.price')->sortable()->searchable(),
                 TextColumn::make('customer.name')->sortable()->searchable(),
                 TextColumn::make('created_at')
                     ->dateTime(),

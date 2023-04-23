@@ -48,6 +48,7 @@ class DrinkResource extends Resource
                 TextColumn::make('id')->sortable(),
                 TextColumn::make('category')->sortable()->searchable(),
                 TextColumn::make('name')->sortable()->searchable(),
+                TextColumn::make('price')->sortable()->searchable(),
                 TextColumn::make('description')->sortable()->searchable(),
                 ImageColumn::make('image'),
                 TextColumn::make('created_at')
