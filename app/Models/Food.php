@@ -11,9 +11,9 @@ class Food extends Model
     protected $primaryKey = 'id';
     protected $fillable = ['name','category','price'];
 
-    public function drink()
+    public function Order()
     {
-        return $this->belongsTo(Drink::class);
+        return $this->belongsTo(Order::class);
     }
     public function customer()
     {
