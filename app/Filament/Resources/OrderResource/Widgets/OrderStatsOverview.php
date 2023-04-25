@@ -20,7 +20,7 @@ class OrderStatsOverview extends BaseWidget
             ->color('danger'),
             Card::make('All Customer', Customer::all()->count())
             ->description('amount of customer')
-            ->descriptionIcon('heroicon-s-user')
+            ->descriptionIcon('heroicon-s-user-group')
             ->color('danger'),
             Card::make('All Bartender', Bartender::all()->count())
             ->description('amount of bartender')
