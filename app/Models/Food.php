@@ -7,5 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Food extends Model
 {
-    use HasFactory;
+    protected $table = 'foods';
+    protected $primaryKey = 'id';
+    protected $fillable = ['name','category','price'];
+
 }
