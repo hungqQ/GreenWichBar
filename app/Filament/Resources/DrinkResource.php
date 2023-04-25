@@ -82,5 +82,6 @@ class DrinkResource extends Resource
             'create' => Pages\CreateDrink::route('/create'),
             'edit' => Pages\EditDrink::route('/{record}/edit'),
         ];
+        
     }    
 }
