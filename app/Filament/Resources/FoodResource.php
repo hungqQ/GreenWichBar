@@ -47,6 +47,8 @@ class FoodResource extends Resource
             TextColumn::make('name')->sortable()->searchable(),
             TextColumn::make('price')->sortable()->searchable(),
             TextColumn::make('description')->sortable()->searchable(),
+            ImageColumn::make('image'),
+
             TextColumn::make('created_at')
                 ->dateTime(),
             TextColumn::make('updated_at')
