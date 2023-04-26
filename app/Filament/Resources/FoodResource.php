@@ -29,7 +29,6 @@ class FoodResource extends Resource
         Card::make()
         ->schema([
             TextInput::make('category'),
-            TextInput::make('name'),
             TextInput::make('price'),
             TextInput::make('description'),
 
@@ -43,7 +42,6 @@ class FoodResource extends Resource
         ->columns([
             TextColumn::make('id')->sortable(),
             TextColumn::make('category')->sortable()->searchable(),
-            TextColumn::make('name')->sortable()->searchable(),
             TextColumn::make('price')->sortable()->searchable(),
             TextColumn::make('description')->sortable()->searchable(),
             TextColumn::make('created_at')
