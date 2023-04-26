@@ -20,7 +20,7 @@ class FoodResource extends Resource
 {
     protected static ?string $model = Food::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-shopping-cart';
     protected static ?string $navigationGroup = 'Product Management';
 
 
