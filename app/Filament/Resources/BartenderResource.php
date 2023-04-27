@@ -33,6 +33,8 @@ class BartenderResource extends Resource
             ->schema([
                 TextInput::make('name'),
                 TextInput::make('age'),
+                TextInput::make('address'),
+
                 TextInput::make('phone'),
                 FileUpload::make('image'),
 
@@ -48,6 +50,8 @@ class BartenderResource extends Resource
             TextColumn::make('id')->sortable(),
             TextColumn::make('name')->sortable()->searchable(),
             TextColumn::make('age')->sortable()->searchable(),
+            TextColumn::make('address')->sortable()->searchable(),
+
             TextColumn::make('phone')->sortable()->searchable(),
             ImageColumn::make('image'),
             Tables\Columns\TextColumn::make('created_at')
