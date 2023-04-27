@@ -34,7 +34,7 @@ class FoodResource extends Resource
             TextInput::make('name'),
             TextInput::make('price'),
             TextInput::make('description'),
-            FileUpload::make('image'),
+            Upload::make('image'),
 
     ])
         ]);
